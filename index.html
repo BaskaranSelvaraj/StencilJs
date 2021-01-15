@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Web Component</title>
+    <script src="tooltip.js"></script>
+    <script src="hyper-link.js" ></script>
+    <style>
+        div {
+            border: 5px solid  yellow;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <template id='tooltip-template'>
+        <slot></slot>
+        <span>
+            (?)
+        </span>
+    </template> -->
+   <p><mri-tooltip tooltipData="This is my tool text">Web Component</mri-tooltip> Testing </p> 
+
+   <p><mri-tooltip></mri-tooltip> </p> 
+   <a is="mri-hyper-link" href="https://google.com">google test</a>
+</body>
+</html>
