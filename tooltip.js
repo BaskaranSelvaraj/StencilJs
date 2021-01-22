@@ -4,6 +4,7 @@ class Tooltip extends HTMLElement
         super();
         console.log("My First ToolTip!");
         this._tooltipContainer;
+        this._tooltipIcon;
         this._tooltipText = "Teting tooltip text";
         this.attachShadow({mode: 'open'})
         // const template = document.querySelector('#tooltip-template');
@@ -16,20 +17,56 @@ class Tooltip extends HTMLElement
                     position: absolute;
                     zIndex: 10;
                 }
+                .highlight{
+                    background-color: red;
+                }
+                ::slotted(.highlight){
+                    border: 1px solid red;
+                }
+                .icon{
+                    background:black;
+                    color:white;
+                    padding: 0.15rem o,5rem;
+                    text-align: center;
+                    border-radius: 50%;
+                }
+                :host(.imp){
+                    background: #ccc;
+                }
             </style>
             <slot> default text</slot>
-            <span>(?)</span>
+            <span class="icon"> (?) </span>
             `;
     }
     connectedCallback() {
         if (this.hasAttribute('tooltipData')) {
             this._tooltipText = this.getAttribute('tooltipData');
         }   
-        const tooltipIcon =  this.shadowRoot.querySelector('span');
-        tooltipIcon.addEventListener('mouseenter', this._showTooltip.bind(this));
-        tooltipIcon.addEventListener('mouseleave', this._hideTooltip.bind(this));
-        this.shadowRoot.appendChild(tooltipIcon);
+        this._tooltipIcon =  this.shadowRoot.querySelector('span');
+        this._tooltipIcon.addEventListener('mouseenter', this._showTooltip.bind(this));
+        this._tooltipIcon.addEventListener('mouseleave', this._hideTooltip.bind(this));
+        // this.shadowRoot.appendChild(tooltipIcon);
         this.style.position = 'relative';
+    }
+
+    disconnectedCallback(){
+        this._tooltipIcon.removeEventListener('mouseenter', this._showTooltip);
+        this._tooltipIcon.removeEventListener('mouseleave', this._hideTooltip);
+        console.log('Disconnected');
+    }
+
+    attributeChangedCallback(name, oldName, newName) {
+        console.log(name, oldName, newName);
+        if(oldName === newName){
+            return;
+        }
+        if(name === "tooltipdata"){
+            this._tooltipText = newName;
+        }
+    }
+
+    static get observedAttributes() {
+        return ['tooltipdata'];
     }
 
     _showTooltip() {

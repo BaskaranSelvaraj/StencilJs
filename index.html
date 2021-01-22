@@ -10,6 +10,12 @@
         div {
             border: 5px solid  yellow;
         }
+        .highlight{
+            /* background-color: aqua; */
+        }
+        mri-tooltip{
+            border: 2px solid red;
+        }
 
     </style>
 </head>
@@ -20,7 +26,11 @@
             (?)
         </span>
     </template> -->
-   <p><mri-tooltip tooltipData="This is my tool text">Web Component</mri-tooltip> Testing </p> 
+   <p>
+       <mri-tooltip class="imp" tooltipData="This is my tool text">
+            <span class="highlight" >Web Component</span> 
+        </mri-tooltip> Testing 
+    </p> 
 
    <p><mri-tooltip></mri-tooltip> </p> 
    <a is="mri-hyper-link" href="https://google.com">google test</a>
