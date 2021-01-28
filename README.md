@@ -1,2 +1,0 @@
-# StencilJs
-StencilJs Training branch
