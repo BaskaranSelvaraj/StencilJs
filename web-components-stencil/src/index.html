@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/web-components-stencil.esm.js"></script>
+    <script nomodule src="/build/web-components-stencil.js"></script>
+  </head>
+  <body>
+   <mri-side-drawer title="Main Menu">
+     <nav>
+       <ul>
+         <li><a href="/">First Link</a></li>
+         <li><a href="/">second Link</a></li>
+         <li><a href="/">third Link</a></li>
+         <li><a href="/">fourth Link</a></li>
+       </ul>
+     </nav>
+   </mri-side-drawer>
+   <script>
+     const sidedraw = document.querySelector('mri-side-drawer');
+     setTimeout(() => {
+      sidedraw.title ="ITs changed now with new value";
+     },3000);
+   </script>
+  </body>
+</html>
